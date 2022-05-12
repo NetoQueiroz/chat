@@ -21,19 +21,38 @@ class App extends Component {
     ]
   }
 
+  adicionarComentario = () =>{
+    console.log("texte de adicionando comentario")
+
+    const novoComentario = {
+        nome: 'Maria',
+        email: 'Maria@mail.com',
+        data: new Date(2022, 5, 11),
+        mensagem: 'Olá, pessoal !!!'
+    }
+    // let lista = this.state.comentarios;
+    // lista.push(novoComentario);
+    // this.setState({comentarios:lista})
+this.setState({
+  comentarios :[...this.state.comentarios, novoComentario]
+})
+
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Meu projeto</h1>
         {this.state.comentarios.map((comentario, indice) => (
           <Comentario
-            key={indice} //se usar do banco, usa IdleDeadline.
+            key={indice} 
             nome={comentario.nome}
             email={comentario.email}
             data={comentario.data}>
             {comentario.mensagem}
           </Comentario>
         ))}
+        <button onClick={this.adicionarComentario}>Adicionar um comentario</button>
       </div>
     );
   }
